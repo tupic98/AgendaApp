@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Agenda</string>
+    <string name="tab2">Favorites</string>
+    <string name="tab1">Contacts</string>
+</resources>
