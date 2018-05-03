@@ -21,6 +21,18 @@ class MainActivity : AppCompatActivity() {
             add(Contact(R.drawable.n_letter,"Nelson Castro", 72936840, "nelsonmandela@gmail.com","DESC",false))
             add(Contact(R.drawable.m_letter,"Mancha ", 72936840, "nelsonmandela@gmail.com","DESC",false))
             add(Contact(R.drawable.l_letter,"Lito", 72936840, "nelsonmandela@gmail.com","DESC",false))
+            add(Contact(R.drawable.n_letter,"Nelson Castro", 72936840, "nelsonmandela@gmail.com","DESC",false))
+            add(Contact(R.drawable.m_letter,"Mancha ", 72936840, "nelsonmandela@gmail.com","DESC",false))
+            add(Contact(R.drawable.l_letter,"Lito", 72936840, "nelsonmandela@gmail.com","DESC",false))
+            add(Contact(R.drawable.n_letter,"Nelson Castro", 72936840, "nelsonmandela@gmail.com","DESC",false))
+            add(Contact(R.drawable.m_letter,"Mancha ", 72936840, "nelsonmandela@gmail.com","DESC",false))
+            add(Contact(R.drawable.l_letter,"Lito", 72936840, "nelsonmandela@gmail.com","DESC",false))
+            add(Contact(R.drawable.n_letter,"Nelson Castro", 72936840, "nelsonmandela@gmail.com","DESC",false))
+            add(Contact(R.drawable.m_letter,"Mancha ", 72936840, "nelsonmandela@gmail.com","DESC",false))
+            add(Contact(R.drawable.l_letter,"Lito", 72936840, "nelsonmandela@gmail.com","DESC",false))
+            add(Contact(R.drawable.n_letter,"Nelson Castro", 72936840, "nelsonmandela@gmail.com","DESC",false))
+            add(Contact(R.drawable.m_letter,"Mancha ", 72936840, "nelsonmandela@gmail.com","DESC",false))
+            add(Contact(R.drawable.l_letter,"Lito", 72936840, "nelsonmandela@gmail.com","DESC",false))
         }
 
         val bundle = Bundle()
