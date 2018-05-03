@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        <com.mancj.materialsearchbar.MaterialSearchBar
+            android:layout_marginRight="14dp"
+            app:mt_speechMode="false"
+            app:mt_hint="Search"
+            app:mt_placeholder="Search"
+            app:theme="@style/AppTheme.PopupOverlay"
+            app:mt_maxSuggestionsCount="5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/searchBar"
+            android:layout_marginEnd="14dp" />
+    </android.support.v7.widget.Toolbar>
+
+    <android.support.design.widget.TabLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/mainTab"
+        android:background="@color/colorPrimary"
+        app:tabTextColor="@android:color/darker_gray"
+        app:tabSelectedTextColor="@android:color/white"
+        app:tabMode="fixed">
+
+        <android.support.design.widget.TabItem
+            android:text="@string/tab1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/mainContacts"/>
+        <android.support.design.widget.TabItem
+            android:text="@string/tab2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/favContacts"/>
+    </android.support.design.widget.TabLayout>
+    <android.support.v4.view.ViewPager
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:backgroundTint="@color/colorAccentBG"
+        android:id="@+id/Pager"
+        android:background="@color/colorAccentBG"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        tools:targetApi="lollipop">
+
+    </android.support.v4.view.ViewPager>
+</LinearLayout>
