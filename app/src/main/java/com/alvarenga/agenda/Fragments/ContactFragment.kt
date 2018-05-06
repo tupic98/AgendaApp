@@ -3,7 +3,6 @@ package com.alvarenga.agenda.Fragments
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -40,7 +39,7 @@ class ContactFragment: Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.frament_contact,container, false)
+        return inflater.inflate(R.layout.fragment_contact,container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
