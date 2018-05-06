@@ -7,24 +7,25 @@
     tools:context=".MainActivity"
     android:orientation="vertical">
 
-    <android.support.v7.widget.Toolbar
+    <android.support.design.widget.AppBarLayout
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/colorPrimary"
+        android:elevation="0dp"
+        app:elevation="0dp"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
         <com.mancj.materialsearchbar.MaterialSearchBar
-            android:layout_marginRight="14dp"
             app:mt_speechMode="false"
+            app:mt_searchBarColor="@color/colorPrimary"
             app:mt_hint="Search"
-            app:mt_placeholder="Search"
+            app:mt_placeholder="Agenda"
             app:theme="@style/AppTheme.PopupOverlay"
             app:mt_maxSuggestionsCount="5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/searchBar"
-            android:layout_marginEnd="14dp" />
-    </android.support.v7.widget.Toolbar>
+            android:id="@+id/searchBar" />
+    </android.support.design.widget.AppBarLayout>
 
     <android.support.design.widget.TabLayout
         android:layout_width="match_parent"
