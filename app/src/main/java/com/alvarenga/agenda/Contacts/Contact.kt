@@ -3,13 +3,13 @@ package com.alvarenga.agenda.Contacts
 import android.os.Parcel
 import android.os.Parcelable
 
-data class Contact(var photo: Int, var name:String, var phone:Int,var email:String,var other:String, var isFav: Boolean):Parcelable{
+data class Contact(var photo: Int, var name:String, var phone:String,var email:String,var other:String, var isFav: Boolean):Parcelable{
 
     //Generated code from parcelable implementation
     constructor(parcel: Parcel) : this(
             parcel.readInt(),
             parcel.readString(),
-            parcel.readInt(),
+            parcel.readString(),
             parcel.readString(),
             parcel.readString(),
             parcel.readByte() != 0.toByte())
@@ -17,7 +17,7 @@ data class Contact(var photo: Int, var name:String, var phone:Int,var email:Stri
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeInt(photo)
         parcel.writeString(name)
-        parcel.writeInt(phone)
+        parcel.writeString(phone)
         parcel.writeString(email)
         parcel.writeString(other)
         parcel.writeByte(if (isFav) 1 else 0)
