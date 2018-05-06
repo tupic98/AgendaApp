@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.GridLayoutManager
+import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -57,6 +58,7 @@ class FavoriteFragment:Fragment(){
 
         recyclerV = getView()!!.findViewById(R.id.favFrag)
         val lmanager = GridLayoutManager(this.context,3)
+        //val lmanager = LinearLayoutManager(this.context)
         recyclerV!!.layoutManager = lmanager
         adapter = FavoriteAdapter(favContact!!,this.context!!,true)
         recyclerV!!.adapter = adapter
