@@ -6,9 +6,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import com.alvarenga.agenda.Contacts.Contact
 import com.alvarenga.agenda.Fragments.ContactFragment
 import com.alvarenga.agenda.Fragments.FavoriteFragment
@@ -26,20 +24,20 @@ class FavoriteAdapter(private val contact: ArrayList<Contact>, private val conte
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoriteViewHolder {
         /*if(tabInstance!!.getItem(0) == Contacts){
-            val v = LayoutInflater.from(parent.context).inflate(R.layout.activity_contactview,parent,false)
+            val v = LayoutInflater.from(parent.context).inflate(R.layout.tab_contactview,parent,false)
             return FavoriteViewHolder(v, this.fav)
         }else{
-            val v = LayoutInflater.from(parent.context).inflate(R.layout.activity_favoriteview,parent,false)
+            val v = LayoutInflater.from(parent.context).inflate(R.layout.tab_favoriteview,parent,false)
             return FavoriteViewHolder(v, this.fav)
         }*/
         /* if(tabInstance!!.getPageTitle(tabLayout.selectedTabPosition)!!.equals(0)){
-             val v = LayoutInflater.from(parent.context).inflate(R.layout.activity_contactview,parent,false)
+             val v = LayoutInflater.from(parent.context).inflate(R.layout.tab_contactview,parent,false)
              return FavoriteViewHolder(v, this.fav)
          }else{
-             val v = LayoutInflater.from(parent.context).inflate(R.layout.activity_favoriteview,parent,false)
+             val v = LayoutInflater.from(parent.context).inflate(R.layout.tab_favoriteview,parent,false)
              return FavoriteViewHolder(v, this.fav)
          }*/
-        val v = LayoutInflater.from(parent.context).inflate(R.layout.activity_favoriteview,parent,false)
+        val v = LayoutInflater.from(parent.context).inflate(R.layout.tab_favoriteview,parent,false)
         return FavoriteViewHolder(v, this.fav)
     }
 

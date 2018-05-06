@@ -2,16 +2,12 @@ package com.alvarenga.agenda.Adapters
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.support.design.widget.TabLayout
-import android.support.v7.view.menu.ActionMenuItemView
-import android.support.v7.widget.CardView
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import com.alvarenga.agenda.Contacts.Contact
 import com.alvarenga.agenda.Fragments.ContactFragment
 import com.alvarenga.agenda.Fragments.FavoriteFragment
@@ -30,7 +26,7 @@ class ContactAdapter(private val contact: ArrayList<Contact>, private val contex
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactViewHolder {
 
-        val v = LayoutInflater.from(parent.context).inflate(R.layout.activity_contactview,parent,false)
+        val v = LayoutInflater.from(parent.context).inflate(R.layout.tab_contactview,parent,false)
         return ContactViewHolder(v, this.fav)
     }
 
