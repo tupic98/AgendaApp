@@ -44,7 +44,7 @@ class ContactAdapter(private val contact: ArrayList<Contact>, private val contex
         holder.favButton.setImageResource(if(contact[position].isFav)
                                             R.drawable.star_full else R.drawable.star_empty)
         holder.favButton.setOnClickListener { v ->
-            Toast.makeText(v.context, contact[position].name, Toast.LENGTH_SHORT).show()
+            //Toast.makeText(v.context, contact[position].name, Toast.LENGTH_SHORT).show()
             if(!fav){
                 if(!holder.fav){
                     contact[position].isFav = true
