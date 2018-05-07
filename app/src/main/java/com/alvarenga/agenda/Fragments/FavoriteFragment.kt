@@ -1,6 +1,7 @@
 package com.alvarenga.agenda.Fragments
 
 import android.annotation.SuppressLint
+import android.content.res.Configuration
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.GridLayoutManager
@@ -20,6 +21,7 @@ class FavoriteFragment:Fragment(){
     private var favContact:ArrayList<Contact>? = null
     private var recyclerV:RecyclerView? = null
     private var adapter:FavoriteAdapter? = null
+    private lateinit var lmanager:GridLayoutManager
 
     companion object {
         @JvmStatic val fragment = FavoriteFragment()
@@ -57,11 +59,32 @@ class FavoriteFragment:Fragment(){
         favContact = favContactPreparation(contact)
 
         recyclerV = getView()!!.findViewById(R.id.favFrag)
-        val lmanager = GridLayoutManager(this.context,3)
+        if(resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT){
+            lmanager = GridLayoutManager(this.context,3)
+        }else{
+            lmanager = GridLayoutManager(this.context,5)
+
+        }
+
         //val lmanager = LinearLayoutManager(this.context)
         recyclerV!!.layoutManager = lmanager
         adapter = FavoriteAdapter(favContact!!,this.context!!,true)
         recyclerV!!.adapter = adapter
+    }
+
+    override fun onConfigurationChanged(newConfig: Configuration?) {
+        super.onConfigurationChanged(newConfig)
+        if(newConfig != null){
+            if(resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT){
+                lmanager = GridLayoutManager(this.context,3)
+            }else{
+                lmanager = GridLayoutManager(this.context,5)
+
+            }
+            recyclerV!!.layoutManager = lmanager
+            adapter = FavoriteAdapter(favContact!!,this.context!!,true)
+            recyclerV!!.adapter = adapter
+        }
     }
 
     fun favContactPreparation(contacts:ArrayList<Contact>?):ArrayList<Contact>{
