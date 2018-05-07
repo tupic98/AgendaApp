@@ -2,12 +2,15 @@ package com.alvarenga.agenda.Adapters
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
+import android.os.Bundle
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import com.alvarenga.agenda.ContactinfoActivity
 import com.alvarenga.agenda.Contacts.Contact
 import com.alvarenga.agenda.Fragments.ContactFragment
 import com.alvarenga.agenda.Fragments.FavoriteFragment
@@ -35,8 +38,23 @@ class ContactAdapter(private val contact: ArrayList<Contact>, private val contex
     }
 
     override fun onBindViewHolder(holder: ContactViewHolder, position: Int) {
+        val sendBundle = Bundle()
         holder.name.text = contact[position].name
         holder.img.setImageResource(contact[position].photo)
+        holder.img.setOnClickListener { v ->
+            sendBundle.putParcelable("KEEY",contact[position])
+            val i  = Intent(context, ContactinfoActivity::class.java)
+            i.putExtras(sendBundle)
+            context.startActivity(i)
+            //(contexte as Activity).finish()
+        }
+        holder.name.setOnClickListener { v ->
+            sendBundle.putParcelable("KEEY",contact[position])
+            val i = Intent(context, ContactinfoActivity::class.java)
+            i.putExtras(sendBundle)
+            context.startActivity(i)
+        }
+
         holder.favButton.setImageResource(if(contact[position].isFav)
                                             R.drawable.star_full else R.drawable.star_empty)
         holder.favButton.setOnClickListener { v ->
