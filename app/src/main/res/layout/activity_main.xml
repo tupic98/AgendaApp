@@ -1,60 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/home"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:orientation="vertical">
+    android:fitsSystemWindows="true">
 
     <android.support.design.widget.AppBarLayout
-        android:id="@+id/toolbar"
+        android:id="@+id/mainAppBar"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
+        android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
         android:elevation="0dp"
         app:elevation="0dp"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
-        <com.mancj.materialsearchbar.MaterialSearchBar
-            app:mt_speechMode="false"
-            app:mt_searchBarColor="@color/colorPrimary"
-            app:mt_hint="Search"
-            app:mt_placeholder="Agenda"
-            app:theme="@style/AppTheme.PopupOverlay"
-            app:mt_maxSuggestionsCount="5"
+
+        <android.support.v7.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:layout_scrollFlags="scroll|enterAlways"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+            <com.mancj.materialsearchbar.MaterialSearchBar
+                app:mt_speechMode="false"
+                app:mt_searchBarColor="@color/colorPrimary"
+                app:mt_hint="Search"
+                app:mt_placeholder="Agenda"
+                app:theme="@style/AppTheme.PopupOverlay"
+                app:mt_maxSuggestionsCount="5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/searchBar" />
+        </android.support.v7.widget.Toolbar>
+        <android.support.design.widget.TabLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/searchBar" />
+            android:id="@+id/mainTab"
+            android:background="@color/colorPrimary"
+            app:tabTextColor="@android:color/darker_gray"
+            app:tabSelectedTextColor="@android:color/white"
+            app:tabMode="fixed"
+            app:tabMaxWidth="0dp"
+            app:tabGravity="fill">
+
+            <android.support.design.widget.TabItem
+                android:text="@string/tab1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/mainContacts"/>
+            <android.support.design.widget.TabItem
+                android:text="@string/tab2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/favContacts"/>
+        </android.support.design.widget.TabLayout>
+
     </android.support.design.widget.AppBarLayout>
 
-    <android.support.design.widget.TabLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/mainTab"
-        android:background="@color/colorPrimary"
-        app:tabTextColor="@android:color/darker_gray"
-        app:tabSelectedTextColor="@android:color/white"
-        app:tabMode="fixed">
 
-        <android.support.design.widget.TabItem
-            android:text="@string/tab1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/mainContacts"/>
-        <android.support.design.widget.TabItem
-            android:text="@string/tab2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/favContacts"/>
-    </android.support.design.widget.TabLayout>
-    <android.support.v4.view.ViewPager
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:backgroundTint="@color/colorAccentBG"
-        android:id="@+id/Pager"
-        android:background="@color/colorAccentBG"
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        tools:targetApi="lollipop">
+        android:fillViewport="true"
+        app:layout_behavior="android.support.design.widget.AppBarLayout$ScrollingViewBehavior">
 
-    </android.support.v4.view.ViewPager>
-</LinearLayout>
+            <android.support.v4.view.ViewPager
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:backgroundTint="@color/colorAccentBG"
+            android:id="@+id/Pager"
+            android:background="@color/colorAccentBG"
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            tools:targetApi="lollipop">
+
+        </android.support.v4.view.ViewPager>
+    </android.support.v4.widget.NestedScrollView>
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/add_contact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:src="@drawable/add"
+        android:clickable="true"
+        android:tint="#FFFFFF"
+        app:backgroundTint="@color/colorPrimary"
+        android:layout_margin="16dp"
+        />
+</android.support.design.widget.CoordinatorLayout>
