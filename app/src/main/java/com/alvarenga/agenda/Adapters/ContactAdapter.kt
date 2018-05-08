@@ -22,9 +22,10 @@ class ContactAdapter(private val contact: ArrayList<Contact>, private val contex
 
     companion object {
         @SuppressLint("StaticFieldLeak")
-        private val contFrag = ContactFragment.getInstance()
+        @JvmStatic val contFrag = ContactFragment.getInstance()
         @SuppressLint("StaticFieldLeak")
-        private val favFrag = FavoriteFragment.getInstance()
+        @JvmStatic val favFrag = FavoriteFragment.getInstance()
+        @JvmStatic var addContact: ArrayList<Contact>? = null
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactViewHolder {

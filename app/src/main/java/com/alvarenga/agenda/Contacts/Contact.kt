@@ -2,8 +2,9 @@ package com.alvarenga.agenda.Contacts
 
 import android.os.Parcel
 import android.os.Parcelable
+import android.support.annotation.Nullable
 
-data class Contact(var photo: Int, var name:String, var phone:String,var email:String,var other:String, var isFav: Boolean):Parcelable{
+data class Contact(var photo: Int, var name:String, var phone:String, @Nullable var email:String, var other:String, var isFav: Boolean):Parcelable{
 
     //Generated code from parcelable implementation
     constructor(parcel: Parcel) : this(

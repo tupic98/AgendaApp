@@ -6,6 +6,7 @@
     android:layout_width="125dp"
     android:layout_height="125dp"
     card_view:cardElevation="0dp"
+    android:layout_gravity="center_horizontal"
     card_view:cardBackgroundColor="@color/colorAccentBG"
     card_view:cardUseCompatPadding="true"
     android:elevation="7dp"

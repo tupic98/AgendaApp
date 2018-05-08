@@ -23,7 +23,8 @@ import de.hdodenhof.circleimageview.CircleImageView
 class ContactInfoAdapter(private val contact: Contact, private val context:Context,private val activityCompat: ContactinfoActivity): RecyclerView.Adapter<ContactInfoAdapter.SingleViewHolder>() {
 
     var contactInfo : ArrayList<String>? = null
-
+    lateinit var phones:String
+    lateinit var emails:String
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SingleViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.contact_info_view,parent,false)
         return SingleViewHolder(v)
@@ -35,22 +36,30 @@ class ContactInfoAdapter(private val contact: Contact, private val context:Conte
 
     override fun onBindViewHolder(holder: SingleViewHolder, position: Int) {
         contactInfo= crearArrayList(contact)
+        /*holder.share.setOnClickListener(View.OnClickListener {
+            val shareIntent = Intent()
+            shareIntent.action = Intent.ACTION_SEND
+            shareIntent.putExtra(Intent.EXTRA_TEXT, contactInfo)
+            shareIntent.type = "text/plain"
+            context.startActivity(Intent.createChooser(shareIntent, "Share via"))
+        })
 
-        /*var intent = Intent()
-        holder.call.setOnClickListener { v ->
-            if(ContextCompat.checkSelfPermission(context, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED){
-                ActivityCompat.requestPermissions(activityCompat,arrayOf<String>(Manifest.permission.CALL_PHONE),225 )
-            }else{
-                val callIntent = Intent(Intent.ACTION_CALL, Uri.fromParts("tel",phone,null))
+        holder.call.setOnClickListener(View.OnClickListener {
+            if (ContextCompat.checkSelfPermission(context, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(activityCompat, arrayOf(Manifest.permission.CALL_PHONE), 225)
+            } else {
+                val callIntent = Intent(Intent.ACTION_CALL, Uri.fromParts("tel", phones, null))
                 context.startActivity(callIntent)
             }
-        }*/
+        })*/
         when(position){
             0 -> {//holder.imgSrc.setImageResource(R.drawable.star_full)
                 holder.text1.text = contactInfo!![position]
+                phones = contactInfo!![position]
                 holder.text2.text = "Teléfono:" }
             1 -> {//holder.imgSrc.setImageResource(R.drawable.star_full)
                 holder.text1.text = contactInfo!![position]
+                emails = contactInfo!![position]
                 holder.text2.text = "Correo Electrónico:" }
             2 -> {
                 holder.text1.text = contactInfo!![position]
@@ -74,9 +83,12 @@ class ContactInfoAdapter(private val contact: Contact, private val context:Conte
         //internal var photo: CircleImageView = itemView.findViewById(R.id.img)
         internal var text1 : TextView = itemView.findViewById(R.id.texty1_single)
         internal var  text2 : TextView = itemView.findViewById(R.id.texty2_single)
+
         //internal var imgSrc : ImageView = itemView.findViewById(R.id.imagy_single)
         //internal var call:LinearLayout = itemView.findViewById(R.id.caller)
         //internal var share:LinearLayout = itemView.findViewById(R.id.sharable)
 
     }
+
+
 }

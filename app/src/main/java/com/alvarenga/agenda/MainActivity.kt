@@ -9,36 +9,52 @@ import android.database.Cursor
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.ContactsContract
+import android.support.design.widget.FloatingActionButton
 import android.support.design.widget.TabLayout
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import android.support.v4.view.ViewPager
+import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.Toolbar
+import com.alvarenga.agenda.Adapters.FavoriteAdapter
 import com.alvarenga.agenda.Adapters.ViewPagerAdapter
 import com.alvarenga.agenda.Contacts.Contact
 
 class MainActivity : AppCompatActivity() {
     private var PERMISSION_REQUEST:Int = 0
     private var instance:Boolean = false
-    var contacts:ArrayList<Contact>? = null
-    private val projection = arrayOf<String>(ContactsContract.Data._ID, ContactsContract.Data.DISPLAY_NAME, ContactsContract.CommonDataKinds.Phone.NUMBER,ContactsContract.CommonDataKinds.Email.DATA)
+
+    private val projection = arrayOf<String>(ContactsContract.Data._ID, ContactsContract.Data.DISPLAY_NAME, ContactsContract.CommonDataKinds.Phone.NUMBER)
     private val selectionClause = ContactsContract.Data.MIMETYPE + "='" + ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE + "' AND " + ContactsContract.CommonDataKinds.Phone.NUMBER + " IS NOT NULL"
     private val sortOrder = ContactsContract.Data.DISPLAY_NAME + " ASC"
+    private val projectionEmail = arrayOf<String>(ContactsContract.CommonDataKinds.Email._ID,ContactsContract.CommonDataKinds.Email.ADDRESS,ContactsContract.CommonDataKinds.Email.TYPE, ContactsContract.CommonDataKinds.Email.LABEL)
+    //private val selectionClauseEmail = ContactsContract.Data.LOOKUP_KEY + " = ?" + " AND " + ContactsContract.Data.MIMETYPE + " = " + "'" + ContactsContract.CommonDataKinds.Email.CONTENT_ITEM_TYPE + "'"
+    private val selectionClauseEmail = ContactsContract.CommonDataKinds.Email.CONTACT_ID + " = ?"
+    private val emailSelectionArgs = arrayOf<String>(ContactsContract.CommonDataKinds.Email.CONTENT_TYPE)
+    private val emailSortOrder = ContactsContract.CommonDataKinds.Email.DISPLAY_NAME + " ASC"
+    private val MIME:String = ContactsContract.Data.MIMETYPE + "=?"
+    private val params = arrayOf(ContactsContract.CommonDataKinds.StructuredName.CONTENT_ITEM_TYPE)
 
+    companion object {
+        @JvmStatic var contacts:ArrayList<Contact>? = null
+        @JvmStatic var nameList:ArrayList<String>? = null
+        @JvmStatic var emailList:ArrayList<String>? = null
+        @JvmStatic var phoneList:ArrayList<String>? = null
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
-        if(!instance){
-            prepareContacts()
-        }
+        prepareContacts()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
         val bundle = Bundle()
         bundle.putParcelableArrayList("KEY", contacts)
-
+        val floatingActionButton = findViewById<FloatingActionButton>(R.id.add_contact)
         val tab = findViewById<TabLayout>(R.id.mainTab)
         val viewer = findViewById<ViewPager>(R.id.Pager)
         val adapter = ViewPagerAdapter(this,supportFragmentManager,bundle)
+
+
 
         tab.setOnTabSelectedListener(object: TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab:TabLayout.Tab) {
@@ -59,14 +75,23 @@ class MainActivity : AppCompatActivity() {
 
         viewer.adapter = adapter
         tab.setupWithViewPager(viewer)
+
+        floatingActionButton.setOnClickListener { v ->
+            val intent = Intent(applicationContext, AddContactActivity::class.java)
+            intent.putExtras(bundle)
+            startActivity(intent)
+
+        }
     }
 
-
+    @SuppressLint("Recycle")
     fun prepareContacts(){
         contacts = ArrayList()
+        nameList = ArrayList()
+        phoneList = ArrayList()
         if(ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS) == PackageManager.PERMISSION_GRANTED){
             var contact:Cursor = contentResolver.query(ContactsContract.Data.CONTENT_URI, projection, selectionClause,null,sortOrder)
-            //var contact:Cursor = contentResolver.query(ContactsContract.CommonDataKinds.Email.CONTENT_URI, null, ContactsContract.CommonDataKinds.Email.CONTACT_ID + "=?",null,sortOrder)
+
             while(contact.moveToNext()){
                 var name:String = contact.getString(contact.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME))
                 var phoneNumber:String = contact.getString(contact.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER))
@@ -102,7 +127,7 @@ class MainActivity : AppCompatActivity() {
                     "x" -> contacts!!.add(Contact(R.drawable.x_letter,name, phoneNumber, email,"",false))
                     "y" -> contacts!!.add(Contact(R.drawable.y_letter,name, phoneNumber, email,"",false))
                     "z" -> contacts!!.add(Contact(R.drawable.z_letter,name, phoneNumber, email,"",false))
-                    else -> contacts!!.add(Contact(R.drawable.z_letter,name, phoneNumber, email,"",false))
+                    else -> contacts!!.add(Contact(R.drawable.a_letter,name, phoneNumber, email,"",false))
                 }
             }
             contact.close()

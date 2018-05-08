@@ -26,12 +26,7 @@ class FavoriteFragment:Fragment(){
     companion object {
         @JvmStatic val fragment = FavoriteFragment()
         @JvmStatic val arg = Bundle()
-        /*fun newInstance(contacts2:ArrayList<Contact>)=
-                FavoriteFragment.apply {
-                    fragment.arguments = Bundle().apply {
-                        putParcelableArrayList("KEY2", contacts2)
-                    }
-                }*/
+
         fun newInstance(contacts2:ArrayList<Contact>): FavoriteFragment{
             arg.putParcelableArrayList("KEY2", contacts2)
             fragment.arguments = arg
@@ -66,7 +61,6 @@ class FavoriteFragment:Fragment(){
 
         }
 
-        //val lmanager = LinearLayoutManager(this.context)
         recyclerV!!.layoutManager = lmanager
         adapter = FavoriteAdapter(favContact!!,this.context!!,true)
         recyclerV!!.adapter = adapter

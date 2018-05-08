@@ -9,6 +9,12 @@
         <item name="coordinatorLayoutStyle">@style/Widget.Design.CoordinatorLayout</item>
         <item name="cardViewStyle">@style/CardView</item>
     </style>
+    <style name="AppaTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
     <style name="AppBarExpanded" parent="@android:style/TextAppearance.Medium">
         <item name="android:textSize">28sp</item>
         <item name="android:textColor">#FFF</item>

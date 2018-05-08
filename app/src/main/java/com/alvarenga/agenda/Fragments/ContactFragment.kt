@@ -15,12 +15,14 @@ import com.alvarenga.agenda.R
 @SuppressLint("ValidFragment", "StaticFieldLeak")
 class ContactFragment: Fragment() {
     private var recyclerV:RecyclerView? = null
-    private var contact: ArrayList<Contact>? = null
+
     private var adapter: ContactAdapter? = null
 
     companion object {
         @JvmStatic val fragment = ContactFragment()
         @JvmStatic val args = Bundle()
+        @JvmStatic var contact: ArrayList<Contact>? = null
+
         fun newInstance(contacts2: ArrayList<Contact>):ContactFragment{
             args.putParcelableArrayList("KEY1",contacts2)
             fragment.arguments = args
