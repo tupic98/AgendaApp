@@ -16,9 +16,7 @@ import android.graphics.drawable.ColorDrawable
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.*
-import com.alvarenga.agenda.Adapters.ContactAdapter.Companion.addContact
 import com.alvarenga.agenda.Contacts.Contact
-import com.alvarenga.agenda.MainActivity.Companion.contacts
 import java.io.InputStream
 import java.util.*
 
@@ -45,12 +43,15 @@ class AddContactActivity:AppCompatActivity(){
     private val PICK_IMAGE = 100
     internal var imageUri: Uri? = null
 
+    var contact: Contact? = null
+    var contacts  = ArrayList<Contact>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_contact)
 
         val receiveBundle = this.intent.extras
-        contacts = receiveBundle.getParcelableArrayList("KEEY")
+        contacts = receiveBundle.getParcelableArrayList("KEEEEY")
 
         profilePhoto = findViewById(R.id.circularImageAddContact)
         firstNameEdit = findViewById(R.id.first_edit)
@@ -62,7 +63,7 @@ class AddContactActivity:AppCompatActivity(){
         birthdayText = findViewById(R.id.birth_edit)
         birthdayB = findViewById(R.id.Birth_button)
         checkB = findViewById(R.id.check)
-        
+
         firstName = firstNameEdit!!.text.toString()
         lastName = lastNameEdit!!.text.toString()
         idContact = idContactEdit!!.text.toString()
@@ -89,6 +90,7 @@ class AddContactActivity:AppCompatActivity(){
             birthdayText!!.text = date
         }
 
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -99,9 +101,19 @@ class AddContactActivity:AppCompatActivity(){
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val id = item.itemId
         if (id == R.id.check) {
-            //contacts!!.add(Contact(R.drawable.a_letter,firstName!!, phoneNumber!!, email!!,"",false))
-            onBackPressed()
+            contact = Contact(R.drawable.a_letter, firstName!!, phoneNumber!!, email!!, "", false)
+            contacts.add(contact!!)
+            val sendBundle = Bundle()
+            sendBundle.putParcelableArrayList("KEEEY", contacts)
+            val i = Intent(this, MainActivity::class.java)
+            i.putExtras(sendBundle)
+            startActivity(i)
             return true
+        }else{
+            if(id == R.id.home){
+                onBackPressed()
+                return true
+            }
         }
         return super.onOptionsItemSelected(item)
     }

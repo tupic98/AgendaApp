@@ -45,8 +45,8 @@ class MainActivity : AppCompatActivity() {
         prepareContacts()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-
+        val receiveBundle = this.intent.extras
+        if (receiveBundle != null) contacts = receiveBundle.getParcelableArrayList("KEEEY")
         val bundle = Bundle()
         bundle.putParcelableArrayList("KEY", contacts)
         val floatingActionButton = findViewById<FloatingActionButton>(R.id.add_contact)
@@ -77,9 +77,12 @@ class MainActivity : AppCompatActivity() {
         tab.setupWithViewPager(viewer)
 
         floatingActionButton.setOnClickListener { v ->
-            val intent = Intent(applicationContext, AddContactActivity::class.java)
-            intent.putExtras(bundle)
+            val sendBundle = Bundle()
+            sendBundle.putParcelableArrayList("KEEEEY",contacts)
+            val intent = Intent(this.baseContext, AddContactActivity::class.java)
+            intent.putExtras(sendBundle)
             startActivity(intent)
+            finish()
 
         }
     }
